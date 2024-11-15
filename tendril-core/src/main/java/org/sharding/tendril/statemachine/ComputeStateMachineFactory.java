@@ -1,4 +1,4 @@
-package org.shard.tendril.statemachine;
+package org.sharding.tendril.statemachine;
 
 /**
  * Factory for creating a {@link ComputeStateMachine}.

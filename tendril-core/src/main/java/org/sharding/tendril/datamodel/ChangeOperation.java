@@ -1,4 +1,4 @@
-package org.shard.tendril.datamodel;
+package org.sharding.tendril.datamodel;
 
 /**
  * List of change operations that can be performed on a shard.

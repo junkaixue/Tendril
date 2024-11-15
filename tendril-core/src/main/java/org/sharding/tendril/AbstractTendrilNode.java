@@ -1,6 +1,6 @@
-package org.shard.tendril;
+package org.sharding.tendril;
 
-import org.shard.tendril.statemachine.ComputeStateMachineFactory;
+import org.sharding.tendril.statemachine.ComputeStateMachineFactory;
 
 public abstract class AbstractTendrilNode implements TendrilNode {
 

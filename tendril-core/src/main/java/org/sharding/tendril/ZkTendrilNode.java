@@ -1,4 +1,4 @@
-package org.shard.tendril;
+package org.sharding.tendril;
 
 /**
  * Tendril node that connects to a Zookeeper cluster.

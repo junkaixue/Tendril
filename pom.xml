@@ -4,33 +4,35 @@
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.shard.tendril</groupId>
+    <groupId>org.sharding.tendril</groupId>
     <artifactId>tendril</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <properties>
-        <maven.compiler.source>23</maven.compiler.source>
-        <maven.compiler.target>23</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.helix</groupId>
-            <artifactId>helix-core</artifactId>
-            <version>1.4.1</version>
-        </dependency>
-    </dependencies>
+    <modules>
+        <module>tendril-core</module>  <!-- Ensure this module is set up correctly -->
+    </modules>
 
+    <!-- Aggregator POMs generally don't have dependencies unless shared with all sub-modules -->
+    <!-- Consider moving specific dependencies into the respective sub-module POMs -->
+
+    <!-- Build configuration here if applicable to all modules -->
     <build>
+        <!-- Common plugin configuration, if required across modules -->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.13.0</version> <!-- or a newer version -->
+                <version>3.13.0</version>
                 <configuration>
-                    <source>17</source>
-                    <target>17</target>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
         </plugins>

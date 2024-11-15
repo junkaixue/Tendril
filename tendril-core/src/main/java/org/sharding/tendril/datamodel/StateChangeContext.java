@@ -1,4 +1,4 @@
-package org.shard.tendril.datamodel;
+package org.sharding.tendril.datamodel;
 
 import java.util.Optional;
 

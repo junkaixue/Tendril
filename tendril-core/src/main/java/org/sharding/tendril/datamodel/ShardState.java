@@ -1,4 +1,4 @@
-package org.shard.tendril.datamodel;
+package org.sharding.tendril.datamodel;
 
 /**
  * List of a shard's state based with priority. The smaller of priority number, the higher of the
