@@ -1,4 +1,4 @@
-package org.sharding.tendril.datamodel;
+package org.sharding.tendril.datamodel.state;
 
 /**
  * List of change operations that can be performed on a shard.

@@ -13,6 +13,8 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <SKIP_INTEGRATION_TESTS>true</SKIP_INTEGRATION_TESTS>
+        <argLine>-XX:+HeapDumpOnOutOfMemoryError</argLine>
     </properties>
 
     <modules>
@@ -23,6 +25,30 @@
     <!-- Consider moving specific dependencies into the respective sub-module POMs -->
 
     <!-- Build configuration here if applicable to all modules -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>6.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>2.17.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>2.17.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>2.17.1</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <build>
         <!-- Common plugin configuration, if required across modules -->
         <plugins>
@@ -35,6 +61,53 @@
                     <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <!--
+                      Configuration for unit/integration tests section 2 of 3 (plugins) STARTS HERE.
+                      This is the core piece for being able to manage unit tests and
+                      integration (='system') tests within Maven by using surefire.
+                      See also: properties section and profiles section.
+                -->
+                <version>3.5.2</version>
+                <configuration>
+                    <argLine>${argLine} -Xms4096m -Xmx4096m</argLine>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/test/conf/testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                    <excludes>
+                        <exclude>**/integration/**</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>integration-tests</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${SKIP_INTEGRATION_TESTS}</skip>
+                            <excludes>
+                                <exclude>none</exclude>
+                            </excludes>
+                            <includes>
+                                <include>**/integration/**</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+                <!--  Configuration for unit/integration tests section 2 of 3 (plugins) ENDS HERE. -->
+            </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>integration-test</id>
+            <properties>
+                <SKIP_INTEGRATION_TESTS>false</SKIP_INTEGRATION_TESTS>
+            </properties>
+        </profile>
+    </profiles>
 </project>

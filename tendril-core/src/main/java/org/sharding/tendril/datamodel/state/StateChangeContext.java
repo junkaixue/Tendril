@@ -1,4 +1,4 @@
-package org.sharding.tendril.datamodel;
+package org.sharding.tendril.datamodel.state;
 
 import java.util.Optional;
 
@@ -16,7 +16,7 @@ public record StateChangeContext(
     ChangeOperation operation,
     // Operation cannot be null and for add/remove operations, shard state can be null
     Optional<ShardState> finalState) {     // To state must be present for CHANGE_STATE operation. It may not
-  // real final state if it is leader/follower mode. It can be intermediate state to guarantee the single
+  //be real final state if it is leader/follower mode. It can be intermediate state to guarantee the single
   // leader in the  cluster.
 
   public StateChangeContext {
@@ -29,7 +29,7 @@ public record StateChangeContext(
     if (operation == null) {
       throw new IllegalArgumentException("operation cannot be null");
     }
-    if (ChangeOperation.CHANGE_STATE.equals(operation) && !finalState.isPresent()) {
+    if (ChangeOperation.CHANGE_STATE.equals(operation) && finalState.isEmpty()) {
       throw new IllegalArgumentException("toState cannot be null for operation CHANGE_STATE");
     }
   }

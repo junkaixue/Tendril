@@ -1,2 +1,2 @@
 # Tendril
-Simple sharding library
+Simple sharding library without service bootstrapping

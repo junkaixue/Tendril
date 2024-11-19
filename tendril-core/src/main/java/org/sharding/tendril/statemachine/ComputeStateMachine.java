@@ -1,6 +1,6 @@
 package org.sharding.tendril.statemachine;
 
-import org.sharding.tendril.datamodel.StateChangeContext;
+import org.sharding.tendril.datamodel.state.StateChangeContext;
 
 /**
  * A state machine callback when a shard get a new state or changing.
