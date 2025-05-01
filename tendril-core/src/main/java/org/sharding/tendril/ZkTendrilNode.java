@@ -12,7 +12,7 @@ public class ZkTendrilNode extends AbstractTendrilNode {
   private final String _zkConnectString;
 
   public ZkTendrilNode(String clusterName, String instanceName, String zkConnectString) {
-    super();
+    super(null);
 
     _clusterName = clusterName;
     _instanceName = instanceName;

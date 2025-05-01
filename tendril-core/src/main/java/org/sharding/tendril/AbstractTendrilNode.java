@@ -3,11 +3,9 @@ package org.sharding.tendril;
 import org.sharding.tendril.statemachine.ComputeStateMachineFactory;
 
 public abstract class AbstractTendrilNode implements TendrilNode {
+  protected final ComputeStateMachineFactory computeStateMachineFactory;
 
-
-  @Override
-  public void registerComputeStateMachineFactory(ComputeStateMachineFactory factory) {
-    // TODO Auto-generated method stub
+  public AbstractTendrilNode(ComputeStateMachineFactory computeStateMachineFactory) {
+    this.computeStateMachineFactory = computeStateMachineFactory;
   }
-
 }

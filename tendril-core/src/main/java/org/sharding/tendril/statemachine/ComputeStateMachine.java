@@ -1,5 +1,6 @@
 package org.sharding.tendril.statemachine;
 
+import org.sharding.tendril.datamodel.state.ShardState;
 import org.sharding.tendril.datamodel.state.StateChangeContext;
 
 /**
@@ -13,4 +14,27 @@ public interface ComputeStateMachine {
    * @param context the state change context
    */
   void invoke(StateChangeContext context);
+
+
+  /**
+   * Get the current state of the shard.
+   *
+   * @return the current state of the shard
+   */
+  ShardState getCurrentState();
+
+  /**
+   * Get the resource name of the shard.
+   *
+   * @return the resource name of the shard
+   */
+  String getResourceName();
+
+  /**
+   * Get the shard name of the shard.
+   *
+   * @return the shard name of the shard
+   */
+  String getShardName();
+
 }

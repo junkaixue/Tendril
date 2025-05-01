@@ -16,11 +16,4 @@ public interface TendrilNode {
    * Disconnect from the Tendril cluster.
    */
   void disconnect();
-
-  /**
-   * Register a compute state machine factory.
-   *
-   * @param factory the factory to create compute state machine instances
-   */
-  void registerComputeStateMachineFactory(ComputeStateMachineFactory factory);
 }
